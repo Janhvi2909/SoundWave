@@ -2,13 +2,13 @@
 
 **Stories worth getting lost in.** An audio fiction platform built with React/Vite, Express, PostgreSQL and a SQLite compatibility adapter. It combines real byte-range audio delivery, resumable playback, libraries, rule-based discovery and selected offline downloads.
 
-**[Live portfolio demo](https://soundwave-codeit-ronit.vercel.app/)** · **[Source](https://github.com/codeit-ronit/SOUNDWAVE)** · **[Architecture](docs/ARCHITECTURE.md)** · **[Operations](docs/OPERATIONS.md)** · **[Resume claim verification](docs/RESUME_CLAIM_VERIFICATION.md)**
+**[Live portfolio demo](https://soundwave-liard.vercel.app/)** · **[Source](https://github.com/Janhvi2909/SoundWave)** · **[Architecture](docs/ARCHITECTURE.md)** · **[Operations](docs/OPERATIONS.md)** · **[Resume claim verification](docs/RESUME_CLAIM_VERIFICATION.md)**
 
 **Google sign-in:** The live sign-in and sign-up forms offer Google Identity Services. Existing password users can explicitly link Google after signing in. See [setup, security decisions and verification](docs/GOOGLE_SIGN_IN.md).
 
 **Deployment status:** The public demo now serves the current frontend and PostgreSQL/authentication backend, with Redis caching/shared limits, BullMQ audio analysis and background analytics. Vercel hosts the frontend and same-origin API proxy; Render Free runs the API/worker and Redis-compatible store; Neon Free stores PostgreSQL data. [Public deployment verification](docs/PUBLIC_DEPLOYMENT.md) records actual browser and restart checks. **Free hosting sleeps when idle, so the first API request can take about a minute.** Redis queue state is volatile on this free plan, and external email delivery is disabled.
 
-The submitted resume URL, [zippy-nitrogen-wd3scr3.tmp.now](https://zippy-nitrogen-wd3scr3.tmp.now/), redirects to the existing live demo. Retain its original claimed deployment and hostname-specific redirect. Use the main demo URL for future submissions.
+The submitted resume URL, [soundwave.tmp.now](https://soundwave.tmp.now/), redirects to the existing live demo. Retain its original claimed deployment and hostname-specific redirect. Use the main demo URL for future submissions.
 
 ![SoundWave desktop interface](docs/soundwave-desktop.png)
 
@@ -19,7 +19,7 @@ The screenshot shows the earlier interface; the current app replaces the fixed d
 Requires **Node.js 22.x and npm**. The verified host used Node 22.21.1 and Google Chrome. All twelve audio files are bundled; no API key, paid service or audio generation is needed.
 
 ```bash
-git clone https://github.com/codeit-ronit/SOUNDWAVE.git
+git clone https://github.com/Janhvi2909/SoundWave.git
 cd SOUNDWAVE
 npm ci
 cp .env.example .env
@@ -296,13 +296,13 @@ Database tests create/remove random schemas; restore/system tests additionally c
 
 **Earlier backend implementation checkpoint:** 96 backend tests with real PostgreSQL, Redis, BullMQ and backup tools enabled, plus 26 frontend tests passed (**122 total, zero failures**). Streaming/offline playback, authentication, analytics, worker-crash recovery and Redis outage recovery are verified. [RESUME_CLAIM_VERIFICATION.md](docs/RESUME_CLAIM_VERIFICATION.md) records current inspection, exact tests, worker/Redis restart checks and HTTP measurements. [PHASE2_REPORT.md](docs/PHASE2_REPORT.md) preserves the prior checkpoint. [PHASE1_REPORT.md](docs/PHASE1_REPORT.md) preserves the earlier checkpoint. The earlier [FINAL_AUDIT.md](FINAL_AUDIT.md) is historical evidence for the pre-auth demo, not a Phase 1 deployment/security certification.
 
-The newer [public rollout report](docs/PUBLIC_DEPLOYMENT.md) records nine additional current-backend browser checks, five existing public PWA checks, five combined-launcher checks and four hosted restart assertions. Run the explicit public check with `node scripts/public-backend-smoke.mjs https://soundwave-codeit-ronit.vercel.app`; it creates a test account.
+The newer [public rollout report](docs/PUBLIC_DEPLOYMENT.md) records nine additional current-backend browser checks, five existing public PWA checks, five combined-launcher checks and four hosted restart assertions. Run the explicit public check with `node scripts/public-backend-smoke.mjs https://soundwave-liard.vercel.app`; it creates a test account.
 
 Browser scripts use `CHROME_PATH`, installed macOS Chrome, or Playwright Chromium. If needed, run `npx playwright install chromium`. Chrome coverage does not establish Safari/Firefox, native OS installation or physical-mobile compatibility.
 
 ## Deployment and remaining work
 
-The current public demo is **https://soundwave-codeit-ronit.vercel.app/**. The submitted `tmp.now` URL still redirects there. Vercel serves the current static frontend and proxies API/audio to **https://soundwave-demo.onrender.com**. The Docker-built Render service runs the API and worker under the demo supervisor, with PostgreSQL 18 on Neon and private Render Key Value connections. Verified TLS protects the database connection; HTTPS and Secure HTTP-only session cookies were checked at the public origin. Twelve chapter waveforms/metadata results are persisted in PostgreSQL.
+The current public demo is **https://soundwave-liard.vercel.app/**. The submitted `tmp.now` URL still redirects there. Vercel serves the current static frontend and proxies API/audio to **https://soundwave-demo.onrender.com**. The Docker-built Render service runs the API and worker under the demo supervisor, with PostgreSQL 18 on Neon and private Render Key Value connections. Verified TLS protects the database connection; HTTPS and Secure HTTP-only session cookies were checked at the public origin. Twelve chapter waveforms/metadata results are persisted in PostgreSQL.
 
 Read [FREE_DEMO_DEPLOYMENT.md](docs/FREE_DEMO_DEPLOYMENT.md) before recreating this setup. The free web service and worker sleep while idle; free Redis loses its state on restart. PostgreSQL holds persistent user data, analytics jobs and derived media. Media jobs can be rebuilt from the bundled catalog. Email verification/recovery delivery remains disabled until a supported external mail provider is configured. This demo is not an always-running or durable Redis job service. The normal Compose configuration retains separate API/worker containers and persistent Redis AOF.
 
@@ -310,9 +310,9 @@ Frontend release commands (the backend must be deployed and verified first):
 
 ```bash
 # After configuring and verifying the production database/environment:
-npx vercel link --yes --project zippy-nitrogen-wd3scr3 --scope ronit-choudharys-projects
-npx vercel deploy --prod --skip-domain --yes --scope ronit-choudharys-projects
-# Check the staged URL, then: npx vercel promote STAGED_URL --yes --scope ronit-choudharys-projects
+npx vercel link --yes --project soundwave --scope janhviy23csai-9514
+npx vercel deploy --prod --skip-domain --yes --scope janhviy23csai-9514
+# Check the staged URL, then: npx vercel promote STAGED_URL --yes --scope janhviy23csai-9514
 ```
 
 Use a remote Linux build for native SQLite dependencies; never upload a Mac-built serverless function. A Node host can serve the app with `npm ci`, `npm run build`, `npm start`, a separately supervised `npm run worker`, HTTPS termination, persistent PostgreSQL and Redis. The public Vercel deployment excludes the old ephemeral serverless API; its external rewrites reach Render. A serverless API alone does not run the durable worker. Retain bundled audio and SPA routing. GitHub pushes alone are not verified to deploy this project.

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { chromium } from "playwright";
 const base = new URL(
-  process.argv[2] || "https://soundwave-codeit-ronit.vercel.app",
+  process.argv[2] || "https://soundwave-liard.vercel.app",
 ).origin;
 let checks = 0,
   browser;
@@ -47,9 +47,9 @@ try {
   });
   const context = await browser.newContext();
   const page = await context.newPage();
-  const submitted = "https://zippy-nitrogen-wd3scr3.tmp.now/";
+  const submitted = "https://soundwave.tmp.now/";
   await page.goto(
-    base.includes("soundwave-codeit-ronit.vercel.app") ? submitted : base,
+    base.includes("soundwave-liard.vercel.app") ? submitted : base,
   );
   assert.equal(new URL(page.url()).origin, base);
   await page

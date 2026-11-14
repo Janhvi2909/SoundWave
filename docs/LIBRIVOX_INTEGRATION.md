@@ -71,12 +71,12 @@ The recorded local browser took **5,149 ms from click until audio had advanced p
 
 ## Public rollout
 
-The current release is publicly verified at **https://soundwave-codeit-ronit.vercel.app/**. The submitted **https://zippy-nitrogen-wd3scr3.tmp.now/** URL still redirects to it. Try [Alice’s Adventures in Wonderland](https://soundwave-codeit-ronit.vercel.app/stories/1200).
+The current release is publicly verified at **https://soundwave-liard.vercel.app/**. The submitted **https://soundwave.tmp.now/** URL still redirects to it. Try [Alice’s Adventures in Wonderland](https://soundwave-liard.vercel.app/stories/1200).
 
 - Vercel frontend deployment `dpl_6bQVo256jogtcgW8UKTds6Jwzd2T` was staged, checked, then promoted. Render deployment `dep-dbmvc25bedkc73djqsvg` built and ran commit `188539f`. The free service's `LIBRIVOX_CATALOG` flag is enabled.
 - Hosted PostgreSQL was queried directly: **10 source books, 212 source chapters, 224 total chapters and 12 original analyzed WAVs**. The hosted worker produced the external data; no host-side import wrote the public catalog.
 - `node scripts/public-catalog-smoke.mjs docs/public-catalog-results.json`: **5 PASS** on the real public URL — full catalog/provenance, external ranges/HEAD, Chrome playback/seek/favorites/refresh resume, offline MP3 download/play/ranges/removal and mobile viewport layout. [Actual public observations](public-catalog-results.json).
-- `node scripts/public-backend-smoke.mjs https://soundwave-codeit-ronit.vercel.app`: **9 PASS** after the release — original WAV playback, registration/login/logout, owner isolation, secure cookies/CSRF and the existing PWA flow.
+- `node scripts/public-backend-smoke.mjs https://soundwave-liard.vercel.app`: **9 PASS** after the release — original WAV playback, registration/login/logout, owner isolation, secure cookies/CSRF and the existing PWA flow.
 - A real `render restart` retained all ten imported books and 212 chapters, and an exact snapshot of the identified external-listener fixture's favorites, chapter position and analytics events matched afterward. The public book API still returned the credited book. Identified test account/guest data was then cleaned up.
 
 Five sequential public catalog requests, fully read from the developer machine, took **1,123 / 492 / 1,379 / 531 / 378 ms** (median **531 ms**, zero HTTP errors). These are small network observations during other smoke checks, not a load/capacity test or before/after comparison. The public MP3 observation took **9,602 ms from click until audio passed one second**. A ten-second seek produced only **1.401 seconds** of recorded actual listening in that test. External CDN/network time and free-host scheduling vary; no instant-start promise is made.

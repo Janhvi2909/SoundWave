@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { existsSync, writeFileSync } from "node:fs";
 import { chromium } from "playwright";
-const base = "https://soundwave-codeit-ronit.vercel.app";
+const base = "https://soundwave-liard.vercel.app";
 const results = {
   date: new Date().toISOString(),
   origin: base,

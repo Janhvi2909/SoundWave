@@ -83,7 +83,7 @@ export async function sourceJson(
     signal: AbortSignal.timeout(20000),
     headers: {
       "User-Agent":
-        "SoundWavePortfolio/1.0 (https://github.com/codeit-ronit/SOUNDWAVE)",
+        "SoundWavePortfolio/1.0 (https://github.com/Janhvi2909/SoundWave)",
       Accept: "application/json",
     },
   });

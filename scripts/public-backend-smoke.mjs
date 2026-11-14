@@ -4,9 +4,9 @@ import { existsSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { chromium } from "playwright";
 const base = process.argv[2];
-if (base !== "https://soundwave-codeit-ronit.vercel.app")
+if (base !== "https://soundwave-liard.vercel.app")
   throw Error(
-    "Usage: node scripts/public-backend-smoke.mjs https://soundwave-codeit-ronit.vercel.app",
+    "Usage: node scripts/public-backend-smoke.mjs https://soundwave-liard.vercel.app",
   );
 let browser,
   page,

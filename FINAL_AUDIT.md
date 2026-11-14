@@ -52,7 +52,7 @@ The sleep-timer test advances a controlled browser clock by five minutes; it doe
 
 Restart tests use isolated databases and fresh processes. A first completion-fixture attempt allowed the old tab to write while another client changed its state; the harness now closes that writer before checking controlled completion durability. Independent clients still share last-arriving-write behavior, as documented. A missing filesystem import in an audit fixture was also corrected before the final passing run.
 
-Live follow-up: `node scripts/public-smoke.mjs` passed all **5 public checks**, including offline reload/play/ranges and download removal. `node scripts/keyboard-smoke.mjs https://soundwave-codeit-ronit.vercel.app` passed all **3 keyboard checks**. Deployment `dpl_3Jb6cymNKhb8EydkjyHwKAiHgfcB` is READY and serves the keyboard fix at the stable URL. The initial sandboxed integration run could not bind localhost (`EPERM`); the permitted rerun passed all 61 tests.
+Live follow-up: `node scripts/public-smoke.mjs` passed all **5 public checks**, including offline reload/play/ranges and download removal. `node scripts/keyboard-smoke.mjs https://soundwave-liard.vercel.app` passed all **3 keyboard checks**. Deployment `dpl_3Jb6cymNKhb8EydkjyHwKAiHgfcB` is READY and serves the keyboard fix at the stable URL. The initial sandboxed integration run could not bind localhost (`EPERM`); the permitted rerun passed all 61 tests.
 
 ## Remaining concerns and unverified functionality
 
@@ -68,7 +68,7 @@ Live follow-up: `node scripts/public-smoke.mjs` passed all **5 public checks**, 
 
 ### Existing Vercel portfolio demo — temporary data
 
-1. Use Node 22.x, clone `https://github.com/codeit-ronit/SOUNDWAVE`, and run:
+1. Use Node 22.x, clone `https://github.com/Janhvi2909/SoundWave`, and run:
 
    ```bash
    npm ci
@@ -83,22 +83,22 @@ Live follow-up: `node scripts/public-smoke.mjs` passed all **5 public checks**, 
 
    ```bash
    npx vercel login
-   npx vercel link --yes --project zippy-nitrogen-wd3scr3 --scope ronit-choudharys-projects
-   npx vercel deploy --prod --yes --scope ronit-choudharys-projects
+   npx vercel link --yes --project soundwave --scope janhviy23csai-9514
+   npx vercel deploy --prod --yes --scope janhviy23csai-9514
    ```
 
    Keep the repository root as the project root. `vercel.json` supplies `npm ci`, `npm run build`, `client/dist`, API/audio rewrites and `server/public/audio/**` function inclusion. Do not deploy a Mac-built `.vercel/output` function as Linux code. CLI deployment works; automatic GitHub deployment is not configured/verified.
 
-3. Keep `soundwave-codeit-ronit.vercel.app` attached to the project. Public access requires this project's login protection to stay disabled; the owner explicitly approved this. No other project's protection was changed.
+3. Keep `soundwave-liard.vercel.app` attached to the project. Public access requires this project's login protection to stay disabled; the owner explicitly approved this. No other project's protection was changed.
 
 4. Retain the published project-level resume redirect. It is a separate live Vercel setting, not a rule in the old deployment's source:
 
    ```json
    {
      "src": "^/(.*)$",
-     "dest": "https://soundwave-codeit-ronit.vercel.app/$1",
+     "dest": "https://soundwave-liard.vercel.app/$1",
      "status": 307,
-     "has": [{ "type": "host", "value": "zippy-nitrogen-wd3scr3.tmp.now" }]
+     "has": [{ "type": "host", "value": "soundwave.tmp.now" }]
    }
    ```
 
@@ -107,12 +107,12 @@ Live follow-up: `node scripts/public-smoke.mjs` passed all **5 public checks**, 
 5. After deployment, verify without authentication:
 
    ```bash
-   curl -f https://soundwave-codeit-ronit.vercel.app/api/health
-   curl -I https://soundwave-codeit-ronit.vercel.app/stories/1
-   curl -I https://soundwave-codeit-ronit.vercel.app/api/chapters/101/stream
+   curl -f https://soundwave-liard.vercel.app/api/health
+   curl -I https://soundwave-liard.vercel.app/stories/1
+   curl -I https://soundwave-liard.vercel.app/api/chapters/101/stream
    curl -D - -o /dev/null -H 'Range: bytes=0-99' \
-     https://soundwave-codeit-ronit.vercel.app/api/chapters/101/stream
-   curl -IL https://zippy-nitrogen-wd3scr3.tmp.now/
+     https://soundwave-liard.vercel.app/api/chapters/101/stream
+   curl -IL https://soundwave.tmp.now/
    ```
 
    Also open the submitted URL in a fresh browser, play audio, seek, refresh, and exercise a selected offline download. The source contains no persistent database or Vercel credentials.

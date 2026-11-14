@@ -27,7 +27,7 @@ services:
       - key: DB_POOL_MAX
         value: "3"
       - key: APP_ORIGIN
-        value: https://soundwave-codeit-ronit.vercel.app
+        value: https://soundwave-liard.vercel.app
       - key: DEMO_MODE
         value: "true"
       - key: REDIS_URL

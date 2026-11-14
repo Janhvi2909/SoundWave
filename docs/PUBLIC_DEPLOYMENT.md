@@ -6,8 +6,8 @@ Verified on **6 November 2026**. This report supersedes the older reports' publi
 
 ## Live addresses and release
 
-- Frontend/resume URL: **https://soundwave-codeit-ronit.vercel.app/**
-- Previously submitted URL: **https://zippy-nitrogen-wd3scr3.tmp.now/** — anonymous HTTP and Chrome checks confirm it redirects to the same current frontend.
+- Frontend/resume URL: **https://soundwave-liard.vercel.app/**
+- Previously submitted URL: **https://soundwave.tmp.now/** — anonymous HTTP and Chrome checks confirm it redirects to the same current frontend.
 - API/media origin behind Vercel's same-origin rewrites: **https://soundwave-demo.onrender.com**
 
 Backend release: `5332eb9`, built from GitHub on Render with the existing Dockerfile. Frontend/proxy release: `545b1a4`, built remotely on Vercel with Node 22 and staged before promotion. The runtime source is identical between these commits; the latter changes only Vercel routing and deployment exclusions. Subsequent documentation/test commits do not change application runtime behavior.
@@ -44,8 +44,8 @@ flowchart LR
 | Published Render JSON schema and `render blueprints validate ./render.yaml`                                        | **PASS**, `valid: true`, free web/Key Value resources                                                                                                                                                                      |
 | Direct Render HTTPS checks                                                                                         | **PASS**: PostgreSQL health, Redis readiness, title search, completed media, 100-byte 206, invalid-range 416 and body-free HEAD                                                                                            |
 | Staged Vercel HTTPS checks                                                                                         | **PASS**: homepage, `/stories/1` SPA route, PostgreSQL health, Redis readiness and metadata through external rewrites                                                                                                      |
-| `node scripts/public-smoke.mjs https://soundwave-codeit-ronit.vercel.app`                                          | Existing test: **5 PASS**; submitted URL redirect, decoded audio, service worker, complete download, offline reload/play/range and removal                                                                                 |
-| `node scripts/public-backend-smoke.mjs https://soundwave-codeit-ronit.vercel.app`                                  | **9 PASS**; hosted services/ranges/search, current account UI, secure cookies, refresh resume/favorites, registration, logout/login, independent visitors, offline flow, CSRF rejection and no uncaught browser exceptions |
+| `node scripts/public-smoke.mjs https://soundwave-liard.vercel.app`                                          | Existing test: **5 PASS**; submitted URL redirect, decoded audio, service worker, complete download, offline reload/play/range and removal                                                                                 |
+| `node scripts/public-backend-smoke.mjs https://soundwave-liard.vercel.app`                                  | **9 PASS**; hosted services/ranges/search, current account UI, secure cookies, refresh resume/favorites, registration, logout/login, independent visitors, offline flow, CSRF rejection and no uncaught browser exceptions |
 | `render restart srv-dbmtfde7bikc73bva8rg --confirm` followed by authenticated checks using the same private cookie | **4 PASS**: original session remains valid; favorite/exact progress retained; analytics totals and asynchronous rollup retained; completed media retained                                                                  |
 | Both existing resume URLs checked anonymously after promotion                                                      | **PASS**; canonical API reports `database: postgres`; submitted URL reaches canonical frontend                                                                                                                             |
 

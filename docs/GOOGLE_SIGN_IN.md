@@ -1,6 +1,6 @@
 # Google sign-in implementation and verification
 
-Checkpoint: 6–7 November 2026. Public app: https://soundwave-codeit-ronit.vercel.app/.
+Checkpoint: 6–7 November 2026. Public app: https://soundwave-liard.vercel.app/.
 
 ## Implemented
 
@@ -17,7 +17,7 @@ Checkpoint: 6–7 November 2026. Public app: https://soundwave-codeit-ronit.verc
 ## Configuration
 
 1. In Google Auth Platform choose **External** for this public portfolio app, then create a **Web application** OAuth client.
-2. Add `https://soundwave-codeit-ronit.vercel.app` as an authorized JavaScript origin. For local development, add the exact origins used, such as `http://localhost:5173` and `http://localhost:3001`. Origins have no path. The legacy resume URL redirects to the canonical origin before the widget loads.
+2. Add `https://soundwave-liard.vercel.app` as an authorized JavaScript origin. For local development, add the exact origins used, such as `http://localhost:5173` and `http://localhost:3001`. Origins have no path. The legacy resume URL redirects to the canonical origin before the widget loads.
 3. Set `GOOGLE_CLIENT_ID` in the API environment and restart/redeploy the API. Compose passes this optional variable through. The browser obtains it from `/api/auth/session`, so no separate Vite secret/build variable is needed.
 4. Configure the public app name, support details and privacy URL in Google. Follow Google's current audience/publication prompts. Basic Sign in with Google using only identity/profile/email has an exception to the usual Testing test-user restriction; this implementation does not request Gmail, Drive or other API scopes. See [Google audience documentation](https://support.google.com/cloud/answer/15549945?hl=en).
 5. Complete a real sign-in in a normal browser and verify logout/returning login. Never share passwords, ID tokens or client secrets in issues or chat.

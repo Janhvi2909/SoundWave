@@ -1,6 +1,6 @@
 {
   "date": "2026-11-06T15:48:03.273Z",
-  "origin": "https://soundwave-codeit-ronit.vercel.app",
+  "origin": "https://soundwave-liard.vercel.app",
   "checks": [
     "public PostgreSQL catalog serves 16 stories, including 10 credited LibriVox books with real chapters",
     "external chapter ranges and HEAD work through the existing public URL",

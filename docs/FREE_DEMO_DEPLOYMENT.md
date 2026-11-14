@@ -27,11 +27,11 @@ This setup has deliberate limitations:
 
 ## Create the free Render services
 
-Open [Deploy the SoundWave Blueprint](https://render.com/deploy?repo=https://github.com/codeit-ronit/SOUNDWAVE). Authorize access to the repository when Render asks. The root `render.yaml` explicitly chooses `plan: free` for both resources and prompts for `DATABASE_URL`. Inspect the plan summary before creating the services; it should contain no paid service.
+Open [Deploy the SoundWave Blueprint](https://render.com/deploy?repo=https://github.com/Janhvi2909/SoundWave). Authorize access to the repository when Render asks. The root `render.yaml` explicitly chooses `plan: free` for both resources and prompts for `DATABASE_URL`. Inspect the plan summary before creating the services; it should contain no paid service.
 
 The Blueprint builds the existing Dockerfile and overrides its command with `node server/scripts/demo.js`. The launcher starts the existing API and worker, forwards termination and stops the API if either child exits unexpectedly. The host can then restart the service instead of silently leaving jobs unprocessed. No new queue or database implementation is introduced.
 
-`APP_ORIGIN` is deliberately `https://soundwave-codeit-ronit.vercel.app`: visitors will use the existing Vercel frontend, and cookies are HTTP-only and Secure in production. Before Vercel cutover, test public health, catalog and audio directly on the Render URL. Do not use the Render frontend for sign-in with this origin configuration.
+`APP_ORIGIN` is deliberately `https://soundwave-liard.vercel.app`: visitors will use the existing Vercel frontend, and cookies are HTTP-only and Secure in production. Before Vercel cutover, test public health, catalog and audio directly on the Render URL. Do not use the Render frontend for sign-in with this origin configuration.
 
 Deployment runs additive migrations and seeds the catalog. The worker backfills missing metadata/waveforms. Bundled source WAV files are included in the image, so this demo does not require uploads or a persistent media disk. Existing data in an unrelated local or old ephemeral Vercel database is **not automatically copied** into Neon.
 
@@ -47,7 +47,7 @@ After Render reports a successful deployment, record its actual HTTPS hostname (
 
 Only then update Vercel's API/audio rewrites to that exact HTTPS Render hostname and build/deploy the **current Git commit** to a preview. Set the Vercel project's Node version to 22.x to match the repository. The current frontend uses same-origin APIs; do not expose database/Redis credentials through Vite environment variables.
 
-On the preview, test browser playback, guest creation, favorites, refresh resume, offline download/range playback/removal and analytics. Production cookies and CSRF require the actual frontend origin: use a matching staging origin for a fully interactive preview or verify after a controlled production cutover with rollback available. Promote the verified deployment to `soundwave-codeit-ronit.vercel.app`; retain the original claimed deployment and hostname redirect for `zippy-nitrogen-wd3scr3.tmp.now`.
+On the preview, test browser playback, guest creation, favorites, refresh resume, offline download/range playback/removal and analytics. Production cookies and CSRF require the actual frontend origin: use a matching staging origin for a fully interactive preview or verify after a controlled production cutover with rollback available. Promote the verified deployment to `soundwave-liard.vercel.app`; retain the original claimed deployment and hostname redirect for `soundwave.tmp.now`.
 
 Finally, verify **both resume URLs** anonymously, check that the frontend includes the new account controls, and test independent guest data. Restart the Render service and verify favorites/progress remain in PostgreSQL and the worker resumes. Update README deployment status only after these public checks pass. A GitHub push, a successful image build or a healthy local container alone is not evidence of public deployment.
 
