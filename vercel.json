@@ -8,11 +8,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://soundwave-demo.onrender.com/api/:path*"
+      "destination": "https://soundwave-demo-n5wr.onrender.com/api/:path*"
     },
     {
       "source": "/audio/:path*",
-      "destination": "https://soundwave-demo.onrender.com/audio/:path*"
+      "destination": "https://soundwave-demo-n5wr.onrender.com/audio/:path*"
     },
     {
       "source": "/:path*",

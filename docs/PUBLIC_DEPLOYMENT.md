@@ -8,7 +8,7 @@ Verified on **6 November 2026**. This report supersedes the older reports' publi
 
 - Frontend/resume URL: **https://soundwave-liard.vercel.app/**
 - Previously submitted URL: **https://soundwave.tmp.now/** — anonymous HTTP and Chrome checks confirm it redirects to the same current frontend.
-- API/media origin behind Vercel's same-origin rewrites: **https://soundwave-demo.onrender.com**
+- API/media origin behind Vercel's same-origin rewrites: **https://soundwave-demo-n5wr.onrender.com**
 
 Backend release: `5332eb9`, built from GitHub on Render with the existing Dockerfile. Frontend/proxy release: `545b1a4`, built remotely on Vercel with Node 22 and staged before promotion. The runtime source is identical between these commits; the latter changes only Vercel routing and deployment exclusions. Subsequent documentation/test commits do not change application runtime behavior.
 
